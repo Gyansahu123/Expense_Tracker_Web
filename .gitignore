@@ -1,0 +1,21 @@
+# Python compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django local database (Important: Don't upload your real database)
+db.sqlite3
+db.sqlite3-journal
+
+# Virtual Environment folder
+venv/
+env/
+.venv/
+
+# IDE settings (VS Code, PyCharm etc.)
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db

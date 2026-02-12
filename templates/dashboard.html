@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Summary Cards -->
+<div class="row mb-4">
+    <div class="col-md-4 mb-3">
+        <div class="card shadow border-start border-primary border-4 h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Expense</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">₹{{ total }}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-coins fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card shadow border-start border-success border-4 h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Today's Expense</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">₹{{ today }}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-calendar-day fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card shadow border-start border-warning border-4 h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">This Month</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">₹{{ monthly }}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-calendar-alt fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Recent Expenses Table -->
+    <div class="col-lg-6 mb-4">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Recent Expenses</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for expense in recent %}
+                            <tr>
+                                <td>
+                                    <strong>{{ expense.category }}</strong><br>
+                                    <small class="text-muted">{{ expense.description }}</small>
+                                </td>
+                                <td>{{ expense.date }}</td>
+                                <td class="text-danger font-weight-bold">-₹{{ expense.amount }}</td>
+                                <td>
+                                    <a href="{% url 'update' expense.id %}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+                                    <a href="{% url 'delete' expense.id %}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><i class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="4" class="text-center">No expenses added yet.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center mt-3">
+                    <a href="{% url 'add' %}" class="btn btn-link">View All / Add New</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart Section -->
+    <div class="col-lg-6 mb-4">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Expense Breakdown</h6>
+            </div>
+            <div class="card-body">
+                <div class="chart-pie pt-4 pb-2">
+                    <canvas id="expenseChart" data-labels="{{ chart_labels|safe }}" data-data="{{ chart_data|safe }}"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Chart Script -->
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'main.js' %}"></script>
+{% endblock %}
