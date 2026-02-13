@@ -44,7 +44,7 @@ Follow these steps to run the project locally:
 1.  **Clone the Repository**
 
     ```bash
-    git clone https://github.com/Gyansahu123/Expense_Tracker_APP
+    git clone https://github.com/Gyansahu123/Expense_Tracker_Web
     cd expense_project
     ```
 
