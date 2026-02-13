@@ -27,7 +27,8 @@ SECRET_KEY = 'django-insecure-7!d3sj@f3+w086)rr53q4gtym$0)i+5s_a%zrre(f^oocc9o0z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['expense-tracker-app-ywci.onrender.com', '*']
+CSRF_TRUSTED_ORIGINS = ['https://expense-tracker-app-ywci.onrender.com']
 
 
 # Application definition
@@ -83,8 +84,8 @@ DATABASES = {
     }
 }
 
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+if 'DATABASE_URL' in os.environ:
+    DATABASES['default'].update(dj_database_url.config(conn_max_age=500))
 
 
 # Password validation
