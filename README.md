@@ -44,7 +44,7 @@ Follow these steps to run the project locally:
 1.  **Clone the Repository**
 
     ```bash
-    git clone https://github.com/yourusername/expense-tracker.git
+    git clone https://github.com/Gyansahu123/Expense_Tracker_APP
     cd expense_project
     ```
 
@@ -105,4 +105,4 @@ expense_project/
 
 ---
 
-Made with ❤️ using Django.
+
