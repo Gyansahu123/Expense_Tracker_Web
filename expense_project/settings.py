@@ -27,8 +27,8 @@ SECRET_KEY = 'django-insecure-7!d3sj@f3+w086)rr53q4gtym$0)i+5s_a%zrre(f^oocc9o0z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['expense-tracker-app-ywci.onrender.com', '*']
-CSRF_TRUSTED_ORIGINS = ['https://expense-tracker-app-ywci.onrender.com']
+ALLOWED_HOSTS = ['expense-tracker-web-app-kkqw.onrender.com', 'expense-tracker-app-ywci.onrender.com', '*']
+CSRF_TRUSTED_ORIGINS = ['https://expense-tracker-web-app-kkqw.onrender.com', 'https://expense-tracker-app-ywci.onrender.com']
 
 
 # Application definition
